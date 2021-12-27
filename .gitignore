@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 # Binaries
+*.swp
 *.mat
 *.png
 *.ptx
