@@ -54,21 +54,21 @@ def get_roi_cpu(dummy_data, region_bot, thickness, dim_x, dim_y):
 
 # ----------------------------------------------------------------
 def display_results(
-  dummy_data, roi_gpu, roi_cpu, region_top, region_bot, t_cpu, t_gpu, slice_y, depth, thickness, dim_x, dim_y):
+  dummy_data, roi_gpu, roi_cpu, region_top, region_bot, t_cpu, t_gpu, slice_x, depth, thickness, dim_x, dim_y):
 
   fig, ax = plt.subplots(2, 2)
 
   axx = ax[0, 0]
   fig.sca(axx)
-  im = axx.imshow(dummy_data[:, slice_y, :])
-  plt.plot(region_top[slice_y, :], label='region top', color='darkorange')
-  plt.plot(region_bot[slice_y, :], label='region bot', color='orchid')
+  im = axx.imshow(dummy_data[:, slice_x, :])
+  plt.plot(region_top[slice_x, :], label='region top', color='darkorange')
+  plt.plot(region_bot[slice_x, :], label='region bot', color='orchid')
   clim = im.properties()['clim']
   plt.title(
     'Data:\n' + r'(Depth $\times$ Dim X $\times$ Dim Y) = (' + \
     str(depth) + r'$\times$' + str(dim_x) + r'$\times$' + str(dim_y) + ')\n' + \
-    'Shown here for slice Dim Y = ' + str(slice_y))
-  plt.xlabel('Dim X')
+    'Shown here for slice Dim X = ' + str(slice_x))
+  plt.xlabel('Dim Y')
   plt.ylabel('Depth')
   plt.legend()
   nice_colorbar(im, axx)
@@ -80,29 +80,29 @@ def display_results(
     'Region bot:\n' + r'(Dim X $\times$ Dim Y) = (' + \
     str(dim_x) + r'$\times$' + str(dim_y) + ')\n' + \
     's.t. Region top = Region bot + ' + str(thickness))
-  plt.xlabel('Dim X')
-  plt.ylabel('Dim Y')
+  plt.xlabel('Dim Y')
+  plt.ylabel('Dim X')
   nice_colorbar(im, axx)
 
   axx = ax[0, 1]
   fig.sca(axx)
-  im = axx.imshow(roi_gpu[:, slice_y, :], vmin=clim[0], vmax=clim[1])
+  im = axx.imshow(roi_gpu[:, slice_x, :], vmin=clim[0], vmax=clim[1])
   plt.title(
     'ROI GPU [' + str(t_gpu) + 's]:\n' + r'(Thickness $\times$ Dim X $\times$ Dim Y) = (' + \
     str(thickness) + r'$\times$' + str(dim_x) + r'$\times$' + str(dim_y) + ')\n' + \
-    'Shown here for slice Dim Y = ' + str(slice_y))
-  plt.xlabel('Dim X')
+    'Shown here for slice Dim X = ' + str(slice_x))
+  plt.xlabel('Dim Y')
   plt.ylabel('Thickness')
   nice_colorbar(im, axx)
 
   axx = ax[1, 1]
   fig.sca(axx)
-  im = axx.imshow(roi_cpu[:, slice_y, :], vmin=clim[0], vmax=clim[1])
+  im = axx.imshow(roi_cpu[:, slice_x, :], vmin=clim[0], vmax=clim[1])
   plt.title(
     'ROI CPU [' + str(t_cpu) + 's]:\n' + r'(Thickness $\times$ Dim X $\times$ Dim Y) = (' + \
     str(thickness) + r'$\times$' + str(dim_x) + r'$\times$' + str(dim_y) + ')\n' + \
-    'Shown here for slice Dim Y = ' + str(slice_y))
-  plt.xlabel('Dim X')
+    'Shown here for slice Dim X = ' + str(slice_x))
+  plt.xlabel('Dim Y')
   plt.ylabel('Thickness')
   nice_colorbar(im, axx)
 

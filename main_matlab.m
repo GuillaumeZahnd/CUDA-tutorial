@@ -11,7 +11,7 @@ dim_x = 701;         % X-wise dimension of the array "dummy_data"
 dim_y = 501;         % Y-wise dimension of the array "dummy_data"
 half_thickness = 50; % Half-thickness of the sub-region that will be extracted along the depth
 half_jitter = 30;    % Half amount of the possible depth-wise variation of the position of the extracted region
-slice_y = 21;        % Slice of the 3D array that will be displayed for example
+slice_x = 21;        % Slice of the 3D array that will be displayed for example
 
 % Derived parameters
 mid_depth = ceil(depth/2); % Position mid-way along the depth axis
@@ -55,4 +55,4 @@ disp(['isequal(roi_gpu, roi_cpu): ' num2str(isequal(roi_gpu, roi_cpu))]);
 
 % Display
 display_results(...
-  dummy_data, roi_gpu, roi_cpu, region_top, region_bot, t_gpu, t_cpu, slice_y, depth, thickness, dim_x, dim_y);
+  dummy_data, roi_gpu, roi_cpu, region_top, region_bot, t_gpu, t_cpu, slice_x, depth, thickness, dim_x, dim_y);

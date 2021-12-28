@@ -11,7 +11,7 @@ function roi = get_roi_cuda_handler(dummy_data, region_bot, depth, thickness, di
   cuda_kernel_name = 'get_roi_cuda_sourcecode_column_major';
   
   % Get the CUDA kernel from the CUDA module
-  cuda_kernel = parallel.gpu.CUDAKernel(cuda_module_path_and_file_name, 'float *, const float *, const int *, const int *, const int *', cuda_kernel_name);
+  cuda_kernel = parallel.gpu.CUDAKernel(cuda_module_path_and_file_name, 'float *, const float *, const int *, const int *', cuda_kernel_name);
 
   % Define the grid and block size
   cuda_kernel.GridSize = [dim_x, dim_y, 1];        % 3D s.t. {1<=x<=65535, 1<=y<=65536, 1<=z<=65535}
@@ -21,7 +21,7 @@ function roi = get_roi_cuda_handler(dummy_data, region_bot, depth, thickness, di
   roi = zeros([thickness, dim_x, dim_y], 'single');
  
   % Call the kernel (the input variables must respect their expected type)
-  roi = feval(cuda_kernel, roi, single(dummy_data), int32(region_bot), depth, thickness);
+  roi = feval(cuda_kernel, roi, single(dummy_data), int32(region_bot), depth);
   
   % Gather the output back from GPU to CPU
   roi = gather(roi);
