@@ -21,7 +21,7 @@ Let us consider a 3D volume of size ``(depth, dim_x, dim_y)``. The objective of 
 - Identify the codename ``sm_xy`` that matches your GPU architecture (e.g., Turing is ``sm_75``):
 - Run this command to compile the file ``name_of_the_cuda_file.cu`` into ``name_of_the_cuda_file.ptx`` (replace ``sm_xy`` by the value adapted to your GPU architecture):
 ```sh
-./compile_pycuda_sourcecode.sh name_of_the_cuda_file.cu sm_xy
+./compile_pycuda_sourcecode.sh sm_xy name_of_the_cuda_file.cu
 ```
 - Run this command to compile all CUDA files contained in ``CUDA-tutorial > cuda_sourcecodes`` (replace ``sm_xy`` by your the value adapted to your GPU architecture):
 ```sh
